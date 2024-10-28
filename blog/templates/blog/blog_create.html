@@ -1,0 +1,19 @@
+<!-- blog/templates/blog/blog_create.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Blog Post</title>
+</head>
+<body>
+    <h1>Create a New Blog Post</h1>
+
+    <form method="post" enctype="multipart/form-data">  <!-- Add this line -->
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Publish</button>
+    </form>
+    
+    <a href="{% url 'blog:blog_list' %}">Back to Blog List</a>
+</body>
+</html>

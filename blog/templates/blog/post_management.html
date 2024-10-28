@@ -1,0 +1,20 @@
+<!-- blog/templates/blog/post_management.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Management</title>
+</head>
+<body>
+    <h1>Post Management</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                {{ post.title }} - {{ post.author.username }} 
+                <a href="{% url 'edit_post' post.id %}">Edit</a>
+                <a href="{% url 'delete_post' post.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

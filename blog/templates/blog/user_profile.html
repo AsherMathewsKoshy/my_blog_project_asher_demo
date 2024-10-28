@@ -1,0 +1,27 @@
+<!-- blog/templates/blog/user_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }}'s Profile</title>
+</head>
+<body>
+    <h1>{{ user.username }}'s Profile</h1>
+
+    <!-- Profile Picture -->
+    {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="Profile picture of {{ user.username }}">
+    {% else %}
+        <p>No profile picture available.</p>
+    {% endif %}
+
+    <!-- Contact Number -->
+    <p>Contact Number: {{ profile.contact_number }}</p>
+
+    <!-- Blocked Status -->
+    <p>Status: {% if profile.blocked %}Blocked{% else %}Active{% endif %}</p>
+
+    <!-- Link to Edit Profile -->
+    <a href="{% url 'blog:edit_profile' %}">Edit Profile</a>  <!-- This should work now -->
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!-- blog/templates/blog/blog_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>Author: {{ post.author.username }}</p>
+    <p>Published on: {{ post.created_at }}</p>
+    
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="Image for {{ post.title }}">
+    {% else %}
+        <p>No image available.</p>
+    {% endif %}
+
+    <p>{{ post.content }}</p>
+
+    <h2>Comments</h2>
+    {% if post.comments.count > 0 %}
+        <ul>
+            {% for comment in post.comments.all %}
+                <li>
+                    <strong>{{ comment.author.username }}</strong>: {{ comment.content }} - 
+                    <em>{{ comment.created_at }}</em>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No comments yet.</p>
+    {% endif %}
+
+    <h3>Leave a Comment</h3>
+    <form action="{% url 'blog:post_comment' post_id=post.id %}" method="post">
+        {% csrf_token %}
+        <textarea name="content" placeholder="Enter your comment here" required></textarea>
+        <button type="submit">Submit Comment</button>
+    </form>
+
+    <a href="{% url 'blog:blog_list' %}">Back to Blog List</a>
+</body>
+</html>

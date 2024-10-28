@@ -1,0 +1,49 @@
+<!-- blog/templates/blog/emails/account_notification.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Notification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            margin: 10px 0;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Account Notification</h1>
+        <p>Dear {{ username }},</p>
+        <p>Your account has been <strong>{{ action }}</strong>.</p>
+        {% if action == 'blocked' %}
+            <p>Please contact support if you believe this is an error.</p>
+        {% elif action == 'unblocked' %}
+            <p>You can now access your account and all its features again.</p>
+        {% endif %}
+        <p>Thank you!</p>
+    </div>
+</body>
+</html>
